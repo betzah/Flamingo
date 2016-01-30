@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using System.IO.Ports.SerialPort class
+
 
 public class Player : Flamingo {
 
@@ -13,6 +15,7 @@ public class Player : Flamingo {
 	// Update is called once per frame
 	void Update()
 	{
+		DoDie();
 		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) ||
 			Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{

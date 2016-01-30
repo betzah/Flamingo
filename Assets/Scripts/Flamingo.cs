@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Flamingo : MonoBehaviour {
+public class Flamingo : MonoBehaviour
+{
 
 
-	public int columnTotal = 10;
-	public float columnWidth = 1.0f;
 	public float columnSpeed = 0.1f;
-	public float laneWidth = 1.0f;
 	public float laneSpeed = 0.1f;
+
+	float columnSpeedMultiplier = 1.0f;
+
+	SpawnFlamingos settings;
 
 	bool laneNow = false; // true is backwards
 	int columnNow = 0;
 	int counter = 0;
-
+	bool isAlive = true;
 
 	// Use this for initialization
 	public virtual void Start()
 	{
-		columnNow = columnTotal / 2;
-		//Debug.Log("Flamingo.cs");
+		settings = GameObject.Find("GameManager").GetComponent<SpawnFlamingos>();
+		columnNow = settings.columnTotal / 2;
+
 	}
-	
+
 
 	public void movementProcess()
 	{
@@ -31,15 +34,15 @@ public class Flamingo : MonoBehaviour {
 		// Lanes
 		if (laneNow)
 		{
-			posNew.z = Mathf.Clamp(posNew.z + laneSpeed, 0.0f, laneWidth);
+			posNew.z = Mathf.Clamp(posNew.z + laneSpeed, 0.0f, settings.laneWidth);
 		}
 		else
 		{
-			posNew.z = Mathf.Clamp(posNew.z - laneSpeed, 0.0f, laneWidth);
+			posNew.z = Mathf.Clamp(posNew.z - laneSpeed, 0.0f, settings.laneWidth);
 		}
 
 		// Colomns
-		float afwijking = posNew.x - (columnWidth * (float)columnNow);
+		float afwijking = posNew.x - (settings.columnWidth * (float)columnNow);
 		posNew.x -= Mathf.Clamp(afwijking, -columnSpeed, columnSpeed);
 
 		// Save new position
@@ -53,9 +56,15 @@ public class Flamingo : MonoBehaviour {
 	}
 
 
+	public void SetMovementSpeed(float speed)
+	{
+		columnSpeedMultiplier = speed;
+	}
+
+
 	public void GoForward()
 	{
-		if (columnNow < columnTotal)
+		if (columnNow < settings.columnTotal)
 		{
 			columnNow += 1;
 		}
@@ -69,13 +78,21 @@ public class Flamingo : MonoBehaviour {
 
 	public void GoBackward()
 	{
-		if (columnNow > 0)
+		columnNow -= 1;
+		/*for (int i = 0; i < settings.listOfFlamingos.; i++)
+		{ 
+			
+		}*/
+	}
+
+	public void DoDie()
+	{
+		/*RaycastHit hit;
+		Vector3 fwd = transform.TransformDirection(Vector3.down);
+		if (Physics.Raycast(transform.position, fwd, out hit, 10))
 		{
-			columnNow -= 1;
-		}
-		else
-		{
-			// flamingo dead
-		}
+			this.gameObject.transform.parent = hit.transform;
+			isAlive = false;
+		}*/
 	}
 }
