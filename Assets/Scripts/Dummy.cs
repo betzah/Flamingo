@@ -12,21 +12,24 @@ public class Dummy : Flamingo {
 
 
 	// Use this for initialization
-	void Start ()
+	public override void Start()
 	{
+		base.Start();
 		SetMovementSpeed(0.1f);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if (!isAlive) return;
+
 		switchTimer += Time.deltaTime;
 		if (switchTimer > 0.5f)
 		{
 			switchTimer = 0.0f;
 			if (Random.value < switchChance)
 			{
-				DoSwitchLane();
+				//DoSwitchLane();
 			}
 		}
 
@@ -39,7 +42,7 @@ public class Dummy : Flamingo {
 			{
 				if (Random.value < moveForwardChance)
 				{
-					GoForward();
+					//GoForward();
 				}
 				else
 				{
@@ -48,6 +51,6 @@ public class Dummy : Flamingo {
 			}
 		}
 
-
+		movementProcess();
 	}
 }

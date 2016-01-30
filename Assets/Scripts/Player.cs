@@ -9,13 +9,14 @@ public class Player : Flamingo {
 	public override void Start ()
 	{
 		base.Start();
-		Debug.Log("Player.cs");
+		SetMovementSpeed(1.0f);
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		DoDie();
+		if (!isAlive) return;
+
 		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) ||
 			Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
