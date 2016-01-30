@@ -11,44 +11,20 @@ public class Flamingo : MonoBehaviour {
 	public float laneSpeed = 0.1f;
 
 	bool laneNow = false; // true is backwards
-	int colomnNow = 0;
+	int columnNow = 0;
 	int counter = 0;
 
 
-	float timer1 = 0.0f;
-	float timer2 = 0.0f;
-	bool a = false;
-
 	// Use this for initialization
-	void Start()
+	public virtual void Start()
 	{
-
+		columnNow = columnTotal / 2;
+		//Debug.Log("Flamingo.cs");
 	}
+	
 
-	// Update is called once per frame
-	void Update()
+	public void movementProcess()
 	{
-		//Test Code
-		timer1 += Time.deltaTime;
-		if (timer1 >= 1.0f)
-		{
-			timer1 -= 1.0f;
-			DoSwitchLane();
-		}
-
-		timer2 += Time.deltaTime;
-		if (timer2 >= 2.0f)
-		{
-			timer2 -= 2.0f;
-			if (a)
-				GoForward();
-			else
-				goBackward();
-
-			a = !a;
-		}
-
-
 		// Read current position
 		Vector3 posNew = this.transform.position;
 
@@ -63,13 +39,12 @@ public class Flamingo : MonoBehaviour {
 		}
 
 		// Colomns
-		float afwijking = posNew.x - (columnWidth * (float)colomnNow);
+		float afwijking = posNew.x - (columnWidth * (float)columnNow);
 		posNew.x -= Mathf.Clamp(afwijking, -columnSpeed, columnSpeed);
 
 		// Save new position
 		this.transform.position = posNew;
 	}
-
 
 
 	public void DoSwitchLane()
@@ -80,9 +55,9 @@ public class Flamingo : MonoBehaviour {
 
 	public void GoForward()
 	{
-		if (colomnNow < columnTotal)
+		if (columnNow < columnTotal)
 		{
-			colomnNow += 1;
+			columnNow += 1;
 		}
 		else
 		{
@@ -94,9 +69,9 @@ public class Flamingo : MonoBehaviour {
 
 	public void GoBackward()
 	{
-		if (colomnNow > 0)
+		if (columnNow > 0)
 		{
-			colomnNow -= 1;
+			columnNow -= 1;
 		}
 		else
 		{

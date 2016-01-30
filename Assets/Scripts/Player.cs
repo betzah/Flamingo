@@ -4,14 +4,15 @@ using System.Collections;
 public class Player : Flamingo {
 
 	// Use this for initialization
-	void Start () {
-		
+	public override void Start ()
+	{
+		base.Start();
+		Debug.Log("Player.cs");
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-
+	void Update()
+	{
 		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) ||
 			Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
 		{
@@ -24,6 +25,8 @@ public class Player : Flamingo {
 		else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			GoForward();
-		} 
+		}
+
+		movementProcess();
 	}
 }

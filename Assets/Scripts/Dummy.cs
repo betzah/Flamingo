@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dummy : MonoBehaviour {
+public class Dummy : Flamingo {
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +10,6 @@ public class Dummy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 }
