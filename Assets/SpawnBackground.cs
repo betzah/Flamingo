@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpawnBackground : MonoBehaviour {
 
-	public float backgroundSpeed = 2.0f;
+	float backgroundSpeed = 2.0f;
 
     // Use this for initialization
     void Start()
