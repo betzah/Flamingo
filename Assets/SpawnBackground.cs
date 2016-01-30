@@ -11,7 +11,7 @@ public class SpawnBackground : MonoBehaviour {
         for (int i = 0; i < 6; i++)
         {
             float randomNum = Random.Range(0f, 1f);
-            int randomObj = Random.Range(1, 4);
+            int randomObj = Random.Range(1, 7);
             if (randomNum > 0.5f)
             {
               GameObject clone = Instantiate(Resources.Load("BackGround/" + randomObj), this.gameObject.transform.GetChild(i).transform.position, Quaternion.Euler(0,-90,0)) as GameObject;
