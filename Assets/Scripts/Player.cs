@@ -34,18 +34,32 @@ public class Player : Flamingo
 
 		Debug.Log(keys); // */
 
-		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) ||
-			Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+		bool keyUp =	Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) ||
+						Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
+		bool keyLeft =	Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
+		bool keyRight =	Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
+		bool keyJump =	Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space);
+		bool keyKick =	Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftControl);
+
+		if (keyUp)
 		{
 			DoSwitchLane();
 		}
-		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+		if (keyLeft)
 		{
 			GoBackward();
 		}
-		else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+		else if (keyRight)
 		{
 			GoForward();
+		}
+		if (keyJump)
+		{
+			doJump();
+		}
+		if (keyKick)
+		{
+
 		}
 
 		movementProcess();

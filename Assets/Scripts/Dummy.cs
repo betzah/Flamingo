@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Dummy : Flamingo {
 
-	public float switchChance = 0.2f;
-	public float moveChance = 0.05f;
+	public float switchChance = 0.001f;
+	public float moveChance = 0.0001f;
 	public float moveForwardChance = 0.2f;
 
 	float switchTimer = 0.0f;
@@ -15,7 +15,7 @@ public class Dummy : Flamingo {
 	public override void Start()
 	{
 		base.Start();
-		SetMovementSpeed(0.1f);
+		SetMovementSpeed(0.02f);
 	}
 	
 	// Update is called once per frame
@@ -23,33 +23,33 @@ public class Dummy : Flamingo {
 	{
 		if (!isAlive) return;
 
-		switchTimer += Time.deltaTime;
+		/*switchTimer += Time.deltaTime;
 		if (switchTimer > 0.5f)
 		{
-			switchTimer = 0.0f;
+			switchTimer = 0.0f;*/
 			if (Random.value < switchChance)
 			{
-				//DoSwitchLane();
+				DoSwitchLane();
 			}
-		}
+		//}
 
 
-		moveTimer += Time.deltaTime;
+		/*moveTimer += Time.deltaTime;
 		if (moveTimer > 0.5f)
 		{
-			moveTimer = 0.0f;
+			moveTimer = 0.0f; //*/
 			if (Random.value < moveChance)
 			{
 				if (Random.value < moveForwardChance)
 				{
-					//GoForward();
+					GoForward();
 				}
 				else
 				{
 					GoBackward();
 				}
 			}
-		}
+		//}
 
 		movementProcess();
 	}

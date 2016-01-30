@@ -7,24 +7,39 @@ public class Flamingo : MonoBehaviour
     Animator animator;
 
     public float columnSpeed = 0.1f;
-	public float laneSpeed = 0.1f;
+	public float laneSpeed = 0.05f;
 
 	public int columnNow = 0;
 	public bool isAlive = true;
-	
+
+	public float gravity = 0.01f;
+	public float jumpSpeed = 0.2f;
+	public float jumpFloorDist = 0.05f;
+
+	float vspeed = 0.0f;
+	float ystart = 0.0f;
+
 	float columnSpeedMultiplier = 1.0f;
 
 	SpawnFlamingos settings;
 
 	int laneNow = 0; // 1 is backwards
 	int counter = 0;
-	
+
+	int mostLeft;
+	bool[,] map;
+
+
 	// Use this for initialization
 	public virtual void Start()
 	{
         animator = GetComponent<Animator>();
         settings = GameObject.Find("GameManager").GetComponent<SpawnFlamingos>();
 		isAlive = true;
+		ystart = this.transform.position.y;
+		
+		mostLeft = columnNow;
+		map = new bool[settings.columnTotal, 2];
 	}
 
 
@@ -45,10 +60,34 @@ public class Flamingo : MonoBehaviour
 
 		// Colomns
 		float afwijking = posNew.x - (settings.columnWidth * (float)columnNow);
-		posNew.x -= Mathf.Clamp(afwijking, -columnSpeed, columnSpeed);
+		posNew.x -= Mathf.Clamp(afwijking, -columnSpeed * columnSpeedMultiplier, columnSpeed * columnSpeedMultiplier);
+
+		// Jumping
+		if (posNew.y < ystart + 0.001f)
+		{
+			posNew.y = ystart; // Mathf.Round(posNew.y * 100.0f) / 100.0f;
+			vspeed = 0.0f;
+		} 
+		else
+		{
+			vspeed -= gravity;
+			posNew.y += vspeed;
+		}
 
 		// Save new position
 		this.transform.position = posNew;
+	}
+
+
+	public void doJump()
+	{
+		//if (this.transform.position.y < ystart + 0.001f)
+		//{
+			Vector3 posNew = this.transform.position;
+			vspeed = jumpSpeed;
+			posNew.y += vspeed;
+			this.transform.position = posNew;
+		//}
 	}
 
 
@@ -76,31 +115,7 @@ public class Flamingo : MonoBehaviour
 
 	public void GoBackward()
 	{
-		int mostLeft = columnNow;
-		bool[,] map = new bool[settings.columnTotal, 2];
-
-		object[] obj = GameObject.FindGameObjectsWithTag("Flamingo");
-		Debug.Log("START");
-		foreach (GameObject o in obj) 
-		{
-			if (!isAlive) continue;
-			Debug.Log(o.name);
-			int columnInst = o.GetComponent<Flamingo>().getPosition();
-			int laneInst = o.GetComponent<Flamingo>().getLane();
-			
-			if (columnInst < 0 || columnInst >= settings.columnTotal)
-			{
-				Debug.Log("Warning!: " + columnInst + ", " + laneInst);
-				continue;
-			}
-			map[columnInst, laneInst] = true;
-
-			if (columnInst < mostLeft)
-			{
-				mostLeft = columnInst;
-			}
-		}
-		Debug.Log("STOP");
+		updateArray();
 
 		int columnNew = -1;
 		for (int i = columnNow; i >= 0; i--)
@@ -108,6 +123,7 @@ public class Flamingo : MonoBehaviour
 			if (map[i, laneNow] == false)
 			{
 				columnNew = i;
+				break;
 			}
 		}
 
@@ -120,6 +136,52 @@ public class Flamingo : MonoBehaviour
 			setPosition(columnNew);
 		}
 	}
+
+
+	void updateArray()
+	{
+		object[] obj = GameObject.FindGameObjectsWithTag("Flamingo");
+
+		for (int i = 0; i < settings.columnTotal; i++)
+		{
+			for (int j = 0; j < 2; j++)
+			{
+				map[i, j] = false;
+			}
+		}
+
+
+		foreach (GameObject o in obj)
+		{
+			if (!isAlive) continue;
+			//Debug.Log(o.name);
+			int columnInst = o.GetComponent<Flamingo>().getPosition();
+			int laneInst = o.GetComponent<Flamingo>().getLane();
+			//Debug.Log("Map[" + columnInst + "," + laneInst + "];");
+			if (columnInst < 0 || columnInst >= settings.columnTotal)
+			{
+				Debug.Log("Warning! : " + columnInst + ", " + laneInst);
+				continue;
+			}
+			map[columnInst, laneInst] = true;
+
+			if (columnInst < mostLeft)
+			{
+				mostLeft = columnInst;
+			}
+		}
+		/*string str = "";
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 2; j++)
+			{
+				str += (map[i, j]) ? (1) : (0);
+			}
+		}
+
+		Debug.Log(str); //*/
+	}
+
 
 	public void setPosition(int column)
 	{
@@ -152,7 +214,6 @@ public class Flamingo : MonoBehaviour
 			this.gameObject.transform.parent = hit.transform;
 			isAlive = false;
             animator.SetBool("isAlive", false);
-			Debug.Log("YEAH!");
 		}
 		else
 		{
