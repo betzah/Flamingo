@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: 7cb09beaa4ad99a4787c44798a5a18a9
+timeCreated: 1454155996
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Hip_CTRL
+    100004: ikHandle2
+    100006: ikHandle3
+    100008: ikHandle4
+    100010: ikHandle5
+    100012: ikHandle6
+    100014: ikHandle7
+    100016: joint1
+    100018: joint10
+    100020: joint12
+    100022: joint13
+    100024: joint14
+    100026: joint15
+    100028: joint16
+    100030: joint17
+    100032: joint18
+    100034: joint19
+    100036: joint2
+    100038: joint20
+    100040: joint21
+    100042: joint22
+    100044: joint23
+    100046: joint24
+    100048: joint25
+    100050: joint3
+    100052: joint4
+    100054: joint5
+    100056: joint6
+    100058: joint7
+    100060: joint8
+    100062: L_foot_CTRL
+    100064: L_toe_CTRL
+    100066: Lower_jaw_CTRL
+    100068: neck_CTRL
+    100070: polySurface2
+    100072: R_foot_CTRL
+    100074: R_toe_CTRL
+    100076: Upper_jam_CTRL
+    400000: //RootNode
+    400002: Hip_CTRL
+    400004: ikHandle2
+    400006: ikHandle3
+    400008: ikHandle4
+    400010: ikHandle5
+    400012: ikHandle6
+    400014: ikHandle7
+    400016: joint1
+    400018: joint10
+    400020: joint12
+    400022: joint13
+    400024: joint14
+    400026: joint15
+    400028: joint16
+    400030: joint17
+    400032: joint18
+    400034: joint19
+    400036: joint2
+    400038: joint20
+    400040: joint21
+    400042: joint22
+    400044: joint23
+    400046: joint24
+    400048: joint25
+    400050: joint3
+    400052: joint4
+    400054: joint5
+    400056: joint6
+    400058: joint7
+    400060: joint8
+    400062: L_foot_CTRL
+    400064: L_toe_CTRL
+    400066: Lower_jaw_CTRL
+    400068: neck_CTRL
+    400070: polySurface2
+    400072: R_foot_CTRL
+    400074: R_toe_CTRL
+    400076: Upper_jam_CTRL
+    4300000: polySurface2
+    7400000: Left
+    9500000: //RootNode
+    13700000: polySurface2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Left
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Hip_CTRL
+        weight: 1
+      - path: Hip_CTRL/ikHandle5
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/Lower_jaw_CTRL
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/Lower_jaw_CTRL/joint24
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/Lower_jaw_CTRL/joint24/joint25
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/Upper_jam_CTRL
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/Upper_jam_CTRL/joint10
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/Upper_jam_CTRL/joint10/joint12
+        weight: 1
+      - path: joint1/joint13
+        weight: 1
+      - path: joint1/joint13/joint14
+        weight: 1
+      - path: joint1/joint13/joint14/joint15
+        weight: 1
+      - path: joint1/joint13/joint14/joint15/joint16
+        weight: 1
+      - path: joint1/joint13/joint14/joint15/joint16/joint17
+        weight: 1
+      - path: joint1/joint18
+        weight: 1
+      - path: joint1/joint19
+        weight: 1
+      - path: joint1/joint19/joint20
+        weight: 1
+      - path: joint1/joint19/joint20/joint21
+        weight: 1
+      - path: joint1/joint19/joint20/joint21/joint22
+        weight: 1
+      - path: joint1/joint19/joint20/joint21/joint22/joint23
+        weight: 1
+      - path: L_foot_CTRL
+        weight: 1
+      - path: L_foot_CTRL/ikHandle2
+        weight: 1
+      - path: L_toe_CTRL
+        weight: 1
+      - path: L_toe_CTRL/ikHandle3
+        weight: 1
+      - path: neck_CTRL
+        weight: 1
+      - path: neck_CTRL/ikHandle4
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      - path: R_foot_CTRL
+        weight: 1
+      - path: R_foot_CTRL/ikHandle6
+        weight: 1
+      - path: R_toe_CTRL
+        weight: 1
+      - path: R_toe_CTRL/ikHandle7
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
