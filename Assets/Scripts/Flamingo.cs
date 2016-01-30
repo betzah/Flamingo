@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Flamingo : MonoBehaviour
 {
-
-
 	public float columnSpeed = 0.1f;
 	public float laneSpeed = 0.1f;
 
@@ -12,8 +10,8 @@ public class Flamingo : MonoBehaviour
 
 	SpawnFlamingos settings;
 
+	public int columnNow = 0;
 	bool laneNow = false; // true is backwards
-	int columnNow = 0;
 	int counter = 0;
 	bool isAlive = true;
 
@@ -78,21 +76,30 @@ public class Flamingo : MonoBehaviour
 
 	public void GoBackward()
 	{
+
 		columnNow -= 1;
-		/*for (int i = 0; i < settings.listOfFlamingos.; i++)
-		{ 
-			
-		}*/
+		/*
+		object[] obj = GameObject.FindGameObjectsWithTag("Flamingo");
+		//object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+		foreach (GameObject o in obj) {
+			Debug.Log(o.name);
+			Debug.Log(o.GetComponent<Flamingo>().columnNow + " < " + columnNow);
+			if (o.GetComponent<Flamingo>().columnNow < columnNow)
+			{
+				return;
+			} 
+		}// */
+		DoDie();
 	}
 
 	public void DoDie()
 	{
-		/*RaycastHit hit;
+		RaycastHit hit;
 		Vector3 fwd = transform.TransformDirection(Vector3.down);
 		if (Physics.Raycast(transform.position, fwd, out hit, 10))
 		{
 			this.gameObject.transform.parent = hit.transform;
-			isAlive = false;
-		}*/
+			//isAlive = false;
+		}
 	}
 }

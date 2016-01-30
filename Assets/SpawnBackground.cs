@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SpawnBackground : MonoBehaviour {
 
+	public float backgroundSpeed = 1.0f;
 
     // Use this for initialization
     void Start()
@@ -25,10 +26,10 @@ public class SpawnBackground : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position -= new Vector3(1, 0, 0) * Time.deltaTime;
+		transform.position -= new Vector3(backgroundSpeed, 0, 0) * Time.deltaTime;
         if(this.transform.position.x <= -29)
         {
-            Instantiate(Resources.Load("Ground"), new Vector3(31, -0.5f, 3), Quaternion.identity);
+			Instantiate(Resources.Load("Ground"), new Vector3(31, -0.5f, 3), Quaternion.identity);
             Destroy(this.gameObject);
         }
 	}
