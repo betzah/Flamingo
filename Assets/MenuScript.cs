@@ -12,13 +12,14 @@ public class MenuScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.anyKeyDown) {
-
-			GetComponent<Animation>().Play();
-
-			SceneManager.LoadScene (1);
+			StartCoroutine (Animation ());
+			;
 		}
 	}
 
-
-
+	IEnumerator Animation() {
+		GetComponent<Animation>().Play();
+		yield return new WaitForSeconds(GetComponent<Animation>().clip.length);
+		SceneManager.LoadScene (1);
 }      
+}
