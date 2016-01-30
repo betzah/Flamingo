@@ -13,7 +13,8 @@ public class SpawnBackground : MonoBehaviour {
             int randomObj = Random.Range(0, 2);
             if (randomNum > 0.5f)
             {
-                Instantiate(Resources.Load("BackGround/" + randomObj), this.gameObject.transform.GetChild(i).transform.position, new Quaternion(0,Random.Range(0,180),0,0));
+              GameObject clone = Instantiate(Resources.Load("BackGround/" + randomObj), this.gameObject.transform.GetChild(i).transform.position, new Quaternion(0,Random.Range(0,180),0,0)) as GameObject;
+                clone.transform.SetParent(this.transform);
             }
             else
             {
@@ -25,6 +26,11 @@ public class SpawnBackground : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.position -= new Vector3(1, 0, 0) * Time.deltaTime;
+        if(this.transform.position.x <= -29)
+        {
+            Instantiate(Resources.Load("Ground"), new Vector3(31, -0.5f, 3), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
 	}
 
 }
