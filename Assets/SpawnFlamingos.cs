@@ -15,7 +15,7 @@ public class SpawnFlamingos : MonoBehaviour {
 	{
 		for (int i = 0; i < columnTotal; i++)
         {
-			GameObject clone = Instantiate(Resources.Load("Flamingo"), new Vector3(i * columnWidth, 0, (i % 2) * laneWidth), Quaternion.identity) as GameObject;
+			GameObject clone = Instantiate(Resources.Load("Flamingo"), new Vector3(i * columnWidth, 0, (i % 2) * laneWidth), Quaternion.Euler(0,90,0)) as GameObject;
 			if (i == playerColumn)
 				clone.AddComponent<Player>().setPosition(i, i % 2);
 			else

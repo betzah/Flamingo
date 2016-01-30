@@ -4,7 +4,9 @@ using System.Collections;
 
 public class Flamingo : MonoBehaviour
 {
-	public float columnSpeed = 0.1f;
+    Animator animator;
+
+    public float columnSpeed = 0.1f;
 	public float laneSpeed = 0.1f;
 
 	public int columnNow = 0;
@@ -20,7 +22,8 @@ public class Flamingo : MonoBehaviour
 	// Use this for initialization
 	public virtual void Start()
 	{
-		settings = GameObject.Find("GameManager").GetComponent<SpawnFlamingos>();
+        animator = GetComponent<Animator>();
+        settings = GameObject.Find("GameManager").GetComponent<SpawnFlamingos>();
 		isAlive = true;
 	}
 
@@ -148,6 +151,7 @@ public class Flamingo : MonoBehaviour
 		{
 			this.gameObject.transform.parent = hit.transform;
 			isAlive = false;
+            animator.SetBool("isAlive", false);
 			Debug.Log("YEAH!");
 		}
 		else
