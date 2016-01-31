@@ -1,18 +1,17 @@
 fileFormatVersion: 2
-guid: 8b1db548028422847907ad77fa7db4e7
-timeCreated: 1454181174
+guid: 04bc0b5a94a1b3e4dbc49e77031274a9
+timeCreated: 1454223719
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: brush1
-    400000: //RootNode
-    400002: brush1
-    2300000: brush1
-    3300000: brush1
-    4300000: brush1
-    9500000: //RootNode
+    100000: Group6264
+    100002: //RootNode
+    400000: Group6264
+    400002: //RootNode
+    2300000: Group6264
+    3300000: Group6264
+    4300000: Group6264
   materials:
     importMaterials: 1
     materialName: 0
@@ -37,7 +36,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 5
+    globalScale: 0.2
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -71,7 +70,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
