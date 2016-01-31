@@ -4,6 +4,8 @@ using System.Collections;
 
 public class Player : Flamingo
 {
+	public GameObject gameManager;
+	Beats beatsScript;
 
 	public int comPortNumber = 3;
 	public int baudRate = 38400;
@@ -16,6 +18,10 @@ public class Player : Flamingo
 	{
 		base.Start();
 		SetMovementSpeed(1.0f);
+
+		gameManager = GameObject.Find("GameManager"); 
+		beatsScript = gameManager.GetComponent<Beats>();
+
 		/*
 		sp = new SerialPort("COM" + comPortNumber, baudRate);
 		sp.Open();
@@ -45,18 +51,23 @@ public class Player : Flamingo
 		{
 			DoSwitchLane();
 		}
+
 		if (keyLeft)
 		{
-			GoBackward();
+			//GoBackward();
+			beatsScript.BeatHit();
 		}
-		else if (keyRight)
+		if (keyRight)
 		{
-			GoForward();
+			//GoForward();
+			beatsScript.BeatHit();
 		}
+
 		if (keyJump)
 		{
 			doJump();
 		}
+
 		if (keyKick)
 		{
 
