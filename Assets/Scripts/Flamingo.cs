@@ -6,8 +6,8 @@ public class Flamingo : MonoBehaviour
 {
     Animator animator;
 
-    public float columnSpeed = 0.1f;
-	public float laneSpeed = 0.05f;
+    public float columnSpeed = 0.02f;
+	public float laneSpeed = 0.01f;
 
 	public int columnNow = 0;
 	public bool isAlive = true;

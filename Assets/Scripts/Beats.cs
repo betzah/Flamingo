@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Beats : MonoBehaviour 
 {
@@ -16,36 +17,49 @@ public class Beats : MonoBehaviour
 	bool isBeatStart = false;
 
 	float score = 0.0f;
-	int scoreCounter = 0;
+	float scoreAveraged = 0.0f;
 
 	bool isToTheRight = false;
 
 	GameObject canvasID;
 	List<GameObject> objects = new List<GameObject>();
 
+	GameObject left, right;
+	GameObject[] beat;
 
 	// Use this for initialization
 	void Start ()
 	{
 		BeatStart();
+		isToTheRight = (Random.value > 0.5f) ? (false) : (true);
 		canvasID = GameObject.Find("Canvas");
-		CanvasAddSprite("UI/UI_Marker", 10.0f, 5.0f);
+		left = GameObject.Find("Left");
+		right = GameObject.Find("Right");
+
+		beat = new GameObject[4];
+		for (int i = 0; i < beat.Length; i++)
+		{
+			beat[i] = GameObject.Find("Beat" + i);
+		}
+		//CanvasAddSprite("UI/UI_Marker", 10.0f, 5.0f, isToTheRight);
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 		foreach (GameObject obj in objects)
 		{
 			Vector3 posNew = obj.transform.position;
 			
-			posNew.x -= 0.5f;
+//			posNew.x -= 0.5f;
 /*
 			if (posNew.x < -5.0f)
 				posNew.x += 25.0f;
 			*/
 			obj.transform.position = posNew;
 		}
+
+		UIProcess();
 
 
 		if (!isBeatEnabled) return;
@@ -67,15 +81,47 @@ public class Beats : MonoBehaviour
 			timer -= beatDuration;
 			beatNumber++;
 			isBeatProcessed = false;
+			isToTheRight = (Random.value > 0.5f) ? (false) : (true);
 		}
 		accuracy = Mathf.Clamp(1.0f - Mathf.Abs((timer - beatDuration) * 2.0f / beatDuration), 0.0f, 1.0f);
 
 	}
 
 
+	void UIProcess()
+	{
+		if (isToTheRight)
+		{
+			left.GetComponent<Image>().enabled = false;
+			right.GetComponent<Image>().enabled = true;
+
+			Vector3 scale = right.GetComponent<RectTransform>().localScale;
+			float size = 0.75f + 0.5f * Mathf.Sin(Mathf.PI * (timer - 0.5f));
+			scale.x = size;
+			scale.y = size;
+			right.GetComponent<RectTransform>().localScale = scale;
+		}
+		else
+		{
+			left.GetComponent<Image>().enabled = true;
+			right.GetComponent<Image>().enabled = false;
+
+			Vector3 scale = left.GetComponent<RectTransform>().localScale;
+			float size = 0.75f + 0.5f * Mathf.Sin(Mathf.PI * (timer - 0.5f));
+			scale.x = size;
+			scale.y = size;
+			left.GetComponent<RectTransform>().localScale = scale;
+		}
+	}
 
 
+	/*
 	void CanvasAddSprite(string path, float posX, float posY)
+	{
+		CanvasAddSprite(path, posX, posY, false);
+	}
+
+	void CanvasAddSprite(string path, float posX, float posY, bool flip)
 	{
 		GameObject obj = new GameObject();
 		objects.Add(obj);
@@ -89,6 +135,7 @@ public class Beats : MonoBehaviour
 
 		obj.AddComponent<SpriteRenderer>();
 		obj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(path);
+		obj.GetComponent<SpriteRenderer>().flipX = flip;
 
 		Vector3 posNew = obj.transform.position;
 		posNew.x = posX;
@@ -96,31 +143,42 @@ public class Beats : MonoBehaviour
 		posNew.z = 1;
 		obj.transform.position = posNew;
 	}
+	*/
 
 
-
-	public void BeatHit()
+	public void BeatHit(bool isRight)
 	{
 		if (!isBeatProcessed)
 		{
 			isBeatProcessed = true;
-			score = score * (scoreCounter / (scoreCounter + 1)) + accuracy / (scoreCounter + 1);
-			scoreCounter++;
+			if (isRight == isToTheRight)
+			{
+				score += accuracy; //score * (scoreCounter / (scoreCounter + 1)) + accuracy / (scoreCounter + 1);
+				
+				Debug.Log("Beat Hit: Correct! Score: " + scoreAveraged);
+			}
+			else
+				Debug.Log("Beat Hit: Wrong!");
 		}
+		else
+			Debug.Log("Beat Hit: Double Click!");
+
 	}
 
 
 	public int BeatGetCount()
 	{
-		return scoreCounter;
+		return beatNumber;
 	}
 
 
 	public float BeatGetAverageAccuracy()
 	{
-		float average = score;
+		scoreAveraged = score / (beatNumber + 1);
 		score = 0.0f;
-		return average;
+		beatNumber = 0;
+
+		return scoreAveraged;
 	}
 
 

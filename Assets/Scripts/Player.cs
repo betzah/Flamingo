@@ -54,13 +54,13 @@ public class Player : Flamingo
 
 		if (keyLeft)
 		{
-			//GoBackward();
-			beatsScript.BeatHit();
+			GoBackward();
+			//beatsScript.BeatHit(false);
 		}
 		if (keyRight)
 		{
-			//GoForward();
-			beatsScript.BeatHit();
+			GoForward();
+			//beatsScript.BeatHit(true);
 		}
 
 		if (keyJump)
@@ -71,6 +71,24 @@ public class Player : Flamingo
 		if (keyKick)
 		{
 
+		}
+
+		if (beatsScript.BeatGetCount() >= 4)
+		{
+			float score = beatsScript.BeatGetAverageAccuracy();
+			Debug.Log(score);
+			if (score < 0.3f)
+			{
+				GoBackward();
+				Debug.Log("BACKWARDS");
+			}
+			else if (score > 0.6f)
+			{
+				GoForward();
+				Debug.Log("FORWARDS");
+			}
+			else
+				Debug.Log("ERROR??");
 		}
 
 		movementProcess();
